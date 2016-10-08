@@ -20,6 +20,9 @@
   },
   "homepage": "https://github.com/ebatsell/MHacks8#readme",
   "dependencies": {
-    "express": "^4.14.0"
+    "ejs": "^2.5.2",
+    "express": "^4.14.0",
+    "rtcmulticonnection": "^2.2.5",
+    "yql": "^1.0.2"
   }
 }
