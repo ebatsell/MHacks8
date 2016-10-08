@@ -1,0 +1,25 @@
+{
+  "name": "mhacks",
+  "version": "1.0.0",
+  "description": "The NodeJS server running our MHacks app",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ebatsell/MHacks8.git"
+  },
+  "keywords": [
+    "mirror"
+  ],
+  "author": "Evan Batsell",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ebatsell/MHacks8/issues"
+  },
+  "homepage": "https://github.com/ebatsell/MHacks8#readme",
+  "dependencies": {
+    "express": "^4.14.0"
+  }
+}
