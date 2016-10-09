@@ -13,8 +13,8 @@
 	extern: null, // external select token to support jQuery dialogs
 	append: true, // append object instead of overwriting
 
-	width: 1366,
-	height: 720,
+	width: 320,
+	height: 240,
 
 	mode: "callback", // callback | save | stream
 
