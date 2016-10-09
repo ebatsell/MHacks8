@@ -5,7 +5,9 @@ var app = express();
 app.set('views', './views');
 app.set('view engine', 'ejs');
 
-function defaultWidget() {
+app.use(express.static('views/pages'));
+
+function defaultWidget() {1
 	this.selected = false;
 	this.location = -1;
 	this.content = "";
