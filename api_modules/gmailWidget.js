@@ -10,6 +10,8 @@ var TOKEN_DIR = (process.env.HOME || process.env.HOMEPATH ||
     process.env.USERPROFILE) + '/.credentials/';
 var TOKEN_PATH = TOKEN_DIR + 'gmailToken.json';
 
+var outputString = '';
+
 // Load client secrets from a local file.
 fs.readFile('client_secret.json', function processClientSecrets(err, content) {
   if (err) {
@@ -118,8 +120,7 @@ function listMessages(auth) {
 
     //Checks if the inbox is empty
     if(response.resultSizeEstimate === 0) {
-      console.log('No new Emails');
-      return;
+      return 'No new Emails';
     }
 
     //Using the email id of each message extracts the message and outputs
@@ -156,10 +157,43 @@ function listMessages(auth) {
               break;
           }
         }
-        console.log(sender + " " + subject + " " + date);
+        outputString += "From: " + sender + '\n' + subject + '\n' +
+                        parseDateTime(date) + '\n';
       });
+      return outputString;
     }
   });
+}
+
+function parseDateTime(dateTime) {
+  var split = dateTime.split(' ');
+  var date = parseDate([parseInt(split[3]), monthToNum(split[2]),
+                        parseInt(split[1])]);
+
+  var time = parseTime(split[4]);
+
+  return date + " at " + time;
+}
+
+function parseTime(time) {
+  var split = time.split(':');
+  return split[0] + ":" + split[1];
+}
+
+//If the date is today returns today, if the date is not for today it returns
+//the date as month/day
+function parseDate(date) {
+  var curDate = new Date();
+
+  //Checks if the day is the same. If it is and the month and date are the same
+  //it is today
+  if(date[2] === curDate.getDate()) {
+    if(date[0] === curDate.getFullYear() && date[1] ===
+    curDate.getMonth() + 1) {
+      return "Today";
+    }
+  }
+  return date[1] + "/" + date[2];
 }
 
 function monthToNum(month) {
