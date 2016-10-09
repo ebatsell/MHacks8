@@ -39,25 +39,27 @@ for (key in selections) {
 	widgets[key].position = selections[key];
 }
 
+//example of including a custom api
+//require('./api_modules/calendarWidget');
 
 widgets["Calendar"].selected = true;
 widgets["Clock"].selected = true;
 
 if (widgets["Calendar"].selected) {
 
-	widgets["Calendar"].content = "";	
+	widgets["Calendar"].content = "THE WEATHER IN ANN ARBOR IS 100";	
 }
 if (widgets["Mail"].selected) {
 
-	widgets["Mail"].content = "";	
+	widgets["Mail"].content = "666 EMAILS SATAN AKA HILLARY CLINTON";	
 }
 if (widgets["Weather"].selected) {
 
-	widgets["Weather"].content = "";	
+	widgets["Weather"].content = "YOU HAVE 0 EVENTS TODAY LOSER";	
 }
 if (widgets["Clock"].selected) {
 
-	widgets["Clock"].content = "";	
+	widgets["Clock"].content = "04:20";	
 }
 if (widgets["api4"].selected) {
 

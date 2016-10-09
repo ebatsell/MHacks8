@@ -7,6 +7,22 @@
 </head>
 
 <body>
+
+<!-- positions holds the key of the widget that will be displayed at index i -->
+<% var positions = [] %>
+<% for (key in widgets) { %>
+	<% if (widgets[key].position >= 0) { %>
+		<% positions[widgets[key].position] = key; %>
+<%} }%>
+
+<% console.log(positions) %>h
+
+<% var i; %>
+<% for (i = 0; i < 16; i++) { %>
+	<% if ((positions[i] !== undefined) and (positions[i] !== null)) { %>
+		<%- include('../templates/widget', {title: positions[i], content: widgets[positions[i].content})  %>
+<%} }%>
+
 <video autoplay></video> 
 
 <div id="webcam"></div>
