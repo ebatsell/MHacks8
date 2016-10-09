@@ -1,38 +1,73 @@
-
-
 var YQL = require('yql');
-var fs = require('fs');
-
-var options = {
-    key: fs.readFileSync('node_modules/rtcmulticonnection-v3/fake-keys/privatekey.pem'),
-    cert: fs.readFileSync('node_modules/rtcmulticonnection-v3/fake-keys/certificate.pem')
-};
-
 var express = require('express');
-var http = require('https');
 var app = express();
-var server = http.createServer(options, app);
-var rtc = require('./node_modules/rtcmulticonnection-v3/Signaling-Server.js')(server)
 
 app.set('views', './views');
 app.set('view engine', 'ejs');
 
-require('./node_modules/rtcmulticonnection-v3/RTCMultiConnection.js')
-var connection = new RTCMultiConnection();
-app.get('/', function (req, res) {
- //  // res.send('Hello World!');
- //    var query = new YQL('select * from weather.forecast where (woeid = 2354842)');
+function defaultWidget() {
+	this.selected = false;
+	this.location = -1;
+	this.content = "";
+}
 
- //  	var condition = new Object();	
-	// query.exec(function(err, data) {
-	//   var location = data.query.results.channel.location;
-	//   condition = data.query.results.channel.item.condition;
-	//   console.log(location);
-	//   console.log(condition);
-	//   console.log('The current weather in ' + location.city + ', ' + location.region + ' is ' + condition.temp + ' degrees.');
-	//   console.log(condition)
- //      res.render('pages/index', {title: "Evan's Home Page", temperature: condition.temp});
-	// });
+var widgets = {
+	"Calendar" : new defaultWidget(),
+	"Mail" : new defaultWidget(),
+	"Weather" : new defaultWidget(),
+	"Clock" : new defaultWidget(),
+	"api4" : new defaultWidget(),
+	"api5" : new defaultWidget(),
+	"api6" : new defaultWidget(),
+	"api7" : new defaultWidget(),
+	"api8" : new defaultWidget(),
+	"api9" : new defaultWidget(),
+	"api10" : new defaultWidget(),
+	"api11" : new defaultWidget(),
+	"api12" : new defaultWidget(),
+	"api13" : new defaultWidget(),
+	"api14" : new defaultWidget(),
+	"api15" : new defaultWidget()
+}
+
+//parse selected widgets, hard-coded for now
+var selections = {"Calendar" : 7, "Mail" : 1, "Weather" : 0, "Clock" : 3, "api4" :15, "api5" : 14}
+for (key in selections) {
+	widgets[key].selected = true;
+	widgets[key].position = selections[key];
+}
+
+
+widgets["Calendar"].selected = true;
+widgets["Clock"].selected = true;
+
+if (widgets["Calendar"].selected) {
+
+	widgets["Calendar"].content = "";	
+}
+if (widgets["Mail"].selected) {
+
+	widgets["Mail"].content = "";	
+}
+if (widgets["Weather"].selected) {
+
+	widgets["Weather"].content = "";	
+}
+if (widgets["Clock"].selected) {
+
+	widgets["Clock"].content = "";	
+}
+if (widgets["api4"].selected) {
+
+	widgets["api4"].content = "";	
+}
+if (widgets["api5"].selected) {
+
+	widgets["api5"].content = "";	
+}
+
+
+app.get('/', function (req, res) {
 	res.render('pages/index', {widgets: widgets});
 });
 
