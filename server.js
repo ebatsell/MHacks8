@@ -33,7 +33,7 @@ app.get('/', function (req, res) {
 	//   console.log(condition)
  //      res.render('pages/index', {title: "Evan's Home Page", temperature: condition.temp});
 	// });
-	res.render('pages/index');
+	res.render('pages/index', {widgets: widgets});
 });
 
 app.listen(3000, function () {
